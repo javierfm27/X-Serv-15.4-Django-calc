@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.http import HttpResponseBadRequest
 
 def suma(request, operando1, operacion, operando2):
     resultado = int(operando1) + int(operando2)
@@ -20,8 +21,8 @@ def div(request, operando1, operacion, operando2):
                     + " " + operando2 + " = " + str(resultado) + "</p>"
         return HttpResponse(htmlAnswer)
     except ZeroDivisionError:
-        hmtlAnswer = "<h3> ERROR! Ha intentado dividir por cero </h3>"
-        return HttpResponse.HttpResponseGone(htmlAnswer)
+        htmlAnswer = "<h3> ERROR! Ha intentado dividir por cero </h3>"
+        return HttpResponseBadRequest(htmlAnswer)
 
 def sub(request, operando1, operacion, operando2):
         resultado = int(operando1) - int(operando2)
